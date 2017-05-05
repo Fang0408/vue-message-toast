@@ -4,8 +4,7 @@ export default {
     install (Vue, name = '$message') {
 
         function construct(options) {
-            let constructer = Vue.extend(Message);
-            let instance = new constructer();
+            let instance = new Vue.extend(Message);
             instance.vm = instance.$mount();
             for(let key in options) {
                 instance.vm[key] = options[key];
@@ -15,13 +14,13 @@ export default {
             return instance;
         }
 
-        var o = {
+        let o = {
             show (msg, options = {}) {
-                var instance = construct(options);
+                let instance = construct(options);
                 instance.vm.msg = msg;
             },
             error (retcode = 0, retmsg = 'ok', options = {}) {
-                var instance = construct(options);
+                let instance = construct(options);
                 instance.vm.msg = `[${retcode}]${retmsg}`;
             }
         }
